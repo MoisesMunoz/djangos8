@@ -1,85 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre nosotros</title>
-    <link rel="stylesheet" href="css/colores.css">
-    <!-- Latest compiled and minified CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+{% extends 'mascota/base.html' %}
+{% load static %}
+{% block contenido %}
 
-    <!-- Latest compiled JavaScript -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-</head>
-<body style="background-color: rgb(223, 223, 192);">
-    <header>
-        <nav class="navbar navbar-expand-md verde navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="images/logo_gato.jpg" alt="Logo Empresa" style="width:70px;" class="rounded">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="row container-fluid navbar-nav">
-                        <div class="col-sm-1">
-                            
-                        </div>
-                        <div class="col-sm-1">
-                            <li class="nav-item">
-                                <a href="index.html">
-                                    <img src="images/pag_principal.jpg" alt="Pag. Principal" style="width:40px;" class="rounded-pill">
-                                </a>
-                            </li>
-                        </div>
-                        <div class="col-sm-1">
-                            <li class="nav-item dropdown">
-                                <a class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" href="#">Productos</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="productoperro.html">Perro</a></li>
-                                    <li><a class="dropdown-item" href="productogato.html">Gato</a></li>
-                                </ul>
-                            </li>
-                        </div>
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-2">
-                            <li class="nav-item">
-                                <a class="btn btn-outline-dark" href="sobrenosotros.html">Sobre Nosotros</a>
-                            </li>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <li class="nav-item">
-                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
-                            </li>
-                        </div>
-                        <div class="col-sm-1">
-                            <li class="nav-item">
-                                <button class="btn btn-outline-dark" type="submit">Buscar</button>
-                            </li>
-                        </div>
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-1">
-                            <li class="nav-item">
-                                <a href="login.html">
-                                    <img src="images/icono_cuenta.jpg" alt="Cuenta" style="width:40px;" class="rounded-pill">
-                                </a>
-                            </li>
-                        </div>
-                        <div class="col-sm-1">
-                            <li class="nav-item">
-                                <a href="carro.html">
-                                    <img src="images/icono_carrito.jpg" alt="Carrito" style="width:40px;" class="rounded-pill">
-                                </a>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+<main>
     <div class="row mt-5 ms-5 me-5">
         <div class="col-lg-4"><div class="jumbotron-fluid mt-2">
             <h1 class="display-4">Sobre nosotros</h1>
@@ -87,10 +10,11 @@
             <p>Nuestro grupo, llamado Pettin' space es un grupo llevado netamente por nuestro aprecio por los animales, nos dedicamos a vender y importar productos variados para la vida sana de las mascotas.</p>
             <hr class="my-4">
             <h6>¡Nuestras redes sociales!</h6>
-            <img src="images/facebooklogo.png" class="rounded" alt="Facebook"><img src="images/twitterlogo.png" class="rounded" alt="Twitter"><img src="images/instagramlogo.png" class="rounded" alt="Instagram">
+            <img src="{%static 'mascota/images/facebooklogo.png' %}" class="rounded" alt="Facebook"><img src="{%static 'mascota/images/twitterlogo.png' %}" class="rounded" alt="Twitter"><img src="{%static 'mascota/images/instagramlogo.png'%}" class="rounded" alt="Instagram">
           </div></div>
       </div>
 
 
-</body>
-</html>
+    </main>
+
+{% endblock contenido %}
