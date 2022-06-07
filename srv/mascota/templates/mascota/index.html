@@ -1,0 +1,90 @@
+{% extends 'mascota/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<main>
+        <h1 class="text-center mb-1">Productos Nuevos</h1>
+        <div class="row container-fluid">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <!-- Carousel -->
+                <div id="demo" class="carousel slide mb-3" data-bs-ride="carousel">
+
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    </div>
+
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner img-fluid shadow">
+                        <div class="carousel-item active">
+                            <a href="gato2.html">
+                                <img src="images/correagato.jpg" alt="Producto Nuevo 1" class="d-block w-100">
+                                <div class="carousel-caption bg-success rounded-pill shadow">
+                                    <h3>Correa de arnés</h3>
+                                    <p>$3000</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="gato1.html">
+                                <img src="images/ratongato.jpg" alt="Producto Nuevo 2" class="d-block w-100">
+                                <div class="carousel-caption bg-success rounded-pill shadow">
+                                    <h3>Ratón Masticable</h3>
+                                    <p>$1000</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="perro3.html">
+                                <img src="images/correaperro.jpg" alt="Producto Nuevo 3" class="d-block w-100">
+                                <div class="carousel-caption bg-success rounded-pill shadow">
+                                    <h3>Correa para perro</h3>
+                                    <p>$2000</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <nav class="navbar navbar-expand-sm verde navbar-light justify-content-center">
+            <h1>Productos en oferta</h1>
+        </nav>
+        <div class="row container-fluid mt-3 mb-5">
+            <div class="col-sm-4 text-center">
+                <a href="#">
+                    <img src="images/proximamente_oferta.jpg" alt="" width="350" class="img-fluid shadow">
+                    <p>Nombre:</p>
+                    <p>Precio:</p>
+                </a>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="#">
+                    <img src="images/proximamente_oferta.jpg" alt="" width="350" class="img-fluid shadow">
+                    <p>Nombre:</p>
+                    <p>Precio:</p>
+                </a>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="#">
+                    <img src="images/proximamente_oferta.jpg" alt="" width="350" class="img-fluid shadow">
+                    <p>Nombre:</p>
+                    <p>Precio:</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+{% endblock contenido %}
