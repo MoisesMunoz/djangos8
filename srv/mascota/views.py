@@ -45,3 +45,15 @@ def admin(request):
 
 def conf_pagar(request):
     return render (request, "mascota/conf_pagar.html")
+
+def crear_usuario(request):
+    return render(request,"mascota/crear_usuario.html")
+
+def eliminar_usuario(request):
+    return render(request,"mascota/eliminar_usuario.html")
+
+def listado_usuarios(request):
+    return render(request,"mascota/listado_usuarios.html")
+
+def modificar_usuario(request):
+    return render(request,"mascota/modificar_usuario.html")
