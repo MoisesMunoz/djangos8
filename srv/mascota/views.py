@@ -38,10 +38,10 @@ def carro(request):
     return render(request,"mascota/carro.html")
 
 def adminañadymod(request):
-    return render(request, "mascota/adminañadymod.html")
+    return render(request, "mascota/adminanadymod.html")
 
 def admin(request):
-    return render (request, "mascota/admin.html")
+    return render (request, "mascota/administrador.html")
 
 def conf_pagar(request):
     return render (request, "mascota/conf_pagar.html")

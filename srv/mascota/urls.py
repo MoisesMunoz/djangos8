@@ -18,8 +18,8 @@ urlpatterns = [
     path('gato2',gato2,name="gato2"),
     path('gato3',gato3,name="gato3"),
     path('carro',carro,name="carro"),
-    path('admin',admin,name="admin"),
-    path('adminañadymod',adminañadymod,name="adminañadymod"),
+    path('administrador',admin,name="administrador"),
+    path('adminanadymod',adminañadymod,name="adminanadymod"),
     path('conf_pagar',conf_pagar,name="conf_pagar")
     
 ]
