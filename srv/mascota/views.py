@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from mascota.models import Producto
 
 # Create your views here.
 def index(request):
@@ -17,34 +18,34 @@ def login(request):
     return render(request,"mascota/login.html")
 
 def perro1(request):
-    return render(request, "mascota/perro1.html")
+    return render(request,"mascota/perro1.html")
 
 def perro2(request):
-    return render(request, "mascota/perro2.html")
+    return render(request,"mascota/perro2.html")
 
 def perro3(request):
-    return render(request, "mascota/perro3.html")
+    return render(request,"mascota/perro3.html")
 
 def gato1(request):
-    return render(request, "mascota/gato1.html")
+    return render(request,"mascota/gato1.html")
 
 def gato2(request):
-    return render(request, "mascota/gato2.html")
+    return render(request,"mascota/gato2.html")
 
 def gato3(request):
-    return render(request, "mascota/gato3.html")
+    return render(request,"mascota/gato3.html")
 
 def carro(request):
     return render(request,"mascota/carro.html")
 
 def adminañadymod(request):
-    return render(request, "mascota/adminanadymod.html")
+    return render(request,"mascota/adminanadymod.html")
 
-def admin(request):
-    return render (request, "mascota/administrador.html")
+def administrador(request):
+    return render(request,"mascota/administrador.html")
 
 def conf_pagar(request):
-    return render (request, "mascota/conf_pagar.html")
+    return render (request,"mascota/conf_pagar.html")
 
 def crear_usuario(request):
     return render(request,"mascota/crear_usuario.html")

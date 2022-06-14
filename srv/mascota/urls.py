@@ -2,7 +2,7 @@ from importlib.resources import path
 from unicodedata import name
 
 
-from mascota.views import crear_usuario, eliminar_usuario, index, listado_usuarios, login, modificar_usuario, productogato, productoperro, sobrenosotros, perro1, perro2, perro3, gato1, gato2, gato3, carro, adminañadymod, admin, conf_pagar
+from mascota.views import administrador, crear_usuario, eliminar_usuario, index, listado_usuarios, login, modificar_usuario, productogato, productoperro, sobrenosotros, perro1, perro2, perro3, gato1, gato2, gato3, carro, adminañadymod, conf_pagar
 from django.urls import path
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
     path('gato2',gato2,name="gato2"),
     path('gato3',gato3,name="gato3"),
     path('carro',carro,name="carro"),
-    path('administrador',admin,name="administrador"),
+    path('administrador',administrador,name="administrador"),
     path('adminanadymod',adminañadymod,name="adminanadymod"),
     path('conf_pagar',conf_pagar,name="conf_pagar"),
     path('crear_usuario',crear_usuario,name="crear_usuario"),
