@@ -4,29 +4,31 @@
 
 
 <main>
-
+    {% load humanize %}
     <div class="row container-fluid">
         <div class="col-sm-1"></div>
         <div class="col-sm-8 mt-3">
-            <div class="list-group shadow">
-                <a href="#" class="list-group-item">Peluche perro $2500
-                    <input class="form-check-input float-end" type="checkbox" name="producto 1">
-                </a>
-                <a href="#" class="list-group-item">Galletas para perro $3000
-                    <input class="form-check-input float-end" type="checkbox" name="producto 2">
-                </a>
-                <a href="#" class="list-group-item">Correa de perro $2000
-                    <input class="form-check-input float-end" type="checkbox" name="producto 3">
-                </a>
-                <a href="#" class="list-group-item">Raton masticable $1000
-                    <input class="form-check-input float-end" type="checkbox" name="producto 4">
-                </a>
-                <a href="#" class="list-group-item">Correa de arnés $3000
-                    <input class="form-check-input float-end" type="checkbox" name="producto 5">
-                </a>
-                <a href="#" class="list-group-item">Snack para gato $4500
-                    <input class="form-check-input float-end" type="checkbox" name="producto 6">
-                </a>
+            <div class="card">
+                <div class="car-body">
+                    <h2>Listado de productos</h2>
+                    <hr>
+                    <table class="table table-striped table-hover table-responsive-sm">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Animal</th>
+                            <th>Categoria</th>
+                            <th>Acciones</th>
+                        </tr>
+                        {% for p in productos %}
+                        <tr>
+                            <td>{{ p.nombre | capfirst}}</td>
+                            <td>{{ p.animal.animal | capfirst}}</td>
+                            <td>{{ p.categoria.categoria | capfirst }}</td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
         <div class="col-sm-1"></div>
@@ -37,7 +39,7 @@
     <div class="row fixed-bottom">
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
-            <a class="btn btn-success shadow" href="{% url 'listado_usuarios' %}">Listado Usuarios</a>
+
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-2">
