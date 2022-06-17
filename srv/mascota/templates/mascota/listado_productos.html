@@ -32,7 +32,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8 mt-3">
             <div class="card">
-                <div class="car-body">
+                <div class="card-body">
                     <h2>Listado de productos</h2>
                     <hr>
                     <a class="btn btn-success shadow" href="{% url 'agregar_producto' %}">Añadir Producto</a>
@@ -42,6 +42,8 @@
                             <th>Nombre</th>
                             <th>Animal</th>
                             <th>Categoria</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
                             <th>Acciones</th>
                         </tr>
                         {% for p in entity %}
@@ -49,6 +51,8 @@
                             <td>{{ p.nombre | capfirst}}</td>
                             <td>{{ p.animal.animal | capfirst}}</td>
                             <td>{{ p.categoria.categoria | capfirst }}</td>
+                            <td>${{ p.precio | intcomma }}</td>
+                            <td>{{ p.stock }}</td>
                             <td>
                                 <a href="{% url 'modificar_producto' p.id %}" class="btn btn-warning btn-sm">Modificar</a>
                                 <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm">Eliminar</a>
