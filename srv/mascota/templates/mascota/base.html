@@ -66,7 +66,7 @@
                         <div class="col-sm-1">
                             {% if user.is_staff %}
                             <li class="nav-item">
-                                <a href="{% url 'listado_usuarios' %}">Listado Usuarios</a>
+                                <a href="{% url 'listado_usuarios' %}" class="btn btn-outline-dark">Listado Usuarios</a>
                             </li>
                             {% else %}
                             {% endif %}
@@ -74,7 +74,7 @@
                         <div class="col-sm-1">
                             {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                                <a href="{% url 'logout' %}" class="btn btn-outline-dark">Cerrar Sesión</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
@@ -87,7 +87,7 @@
                         <div class="col-sm-1">
                             {% if user.is_staff %}
                             <li class="nav-item">
-                                <a href="{% url 'listado_productos' %}">Listado de Productos</a>
+                                <a href="{% url 'listado_productos' %}" class="btn btn-outline-dark">Listado de Productos</a>
                             </li>
                             {% else %}
                             <li class="nav-item">

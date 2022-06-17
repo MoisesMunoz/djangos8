@@ -97,22 +97,6 @@ def eliminar_producto(request,id):
     messages.success(request, "Eliminado Correctamente")
     return redirect(to="listado_productos")
 
-@login_required()
-def cambiar_password(request):
-
-    form=PasswordChangeForm(request.POST or None)
-    contexto={
-        "form":form
-    }
-    
-    if request.method=="POST":
-        form=PasswordChangeForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(to="index")
-
-    return render(request,"registration/cambiar_password.html",contexto)
-
 def perfil_usuario(request):
     
     form=PerfilUsuarioForm(request.POST or None)
@@ -167,3 +151,11 @@ def listado_usuarios(request):
         'paginator':paginator
     }
     return render(request,"mascota/listado_usuarios",contexto)
+
+def detalle_producto(request,id):
+    producto=get_object_or_404(Producto, id=id)
+    
+    contexto={
+        'form': ProductoForm(instance=producto)
+    }
+    return render(request,"mascota/detalle_producto.html",contexto)

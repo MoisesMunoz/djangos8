@@ -12,7 +12,9 @@
             {% for p in productos %}
             <div class="col-sm-4 text-center">
                 {% if p.imagen %}
-                <img src={{ p.imagen.url }} alt="" width="600" class="img-fluid">
+                <a href="{% url 'detalle_producto' p.id %}">
+                    <img src={{ p.imagen.url }} alt="" width="600" class="img-fluid">
+                </a>
                 {% endif %}
                 <h3>{{ p.nombre | capfirst }}</h3>
                 <h2>${{ p.precio | intcomma }}</h2>
