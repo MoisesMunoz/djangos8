@@ -1,5 +1,28 @@
 {% extends 'mascota/base.html' %}
 {% load static %}
+
+{% block js %}
+<script>
+    function eliminarProducto(id){
+        Swal.fire({
+            "title":"¿Estas seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        })
+        .then(function(result){
+            if(result.isConfirmed) {
+                window.location.href="eliminar_producto/"+id
+            }
+        })
+    }
+</script>
+{% endblock %}
+
 {% block contenido %}
 
 
@@ -12,6 +35,8 @@
                 <div class="car-body">
                     <h2>Listado de productos</h2>
                     <hr>
+                    <a class="btn btn-success shadow" href="{% url 'agregar_producto' %}">Añadir Producto</a>
+                    <hr>
                     <table class="table table-striped table-hover table-responsive-sm">
                         <tr>
                             <th>Nombre</th>
@@ -19,37 +44,27 @@
                             <th>Categoria</th>
                             <th>Acciones</th>
                         </tr>
-                        {% for p in productos %}
+                        {% for p in entity %}
                         <tr>
                             <td>{{ p.nombre | capfirst}}</td>
                             <td>{{ p.animal.animal | capfirst}}</td>
                             <td>{{ p.categoria.categoria | capfirst }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{% url 'modificar_producto' p.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                                <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </table>
+                    <div>
+                        {% include 'mascota/paginator.html' %}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-2 mt-3">
             <a class="btn btn-success shadow" href="{% url 'index' %}">Cerrar Sesión Admin</a>
-        </div>
-    </div>
-    <div class="row fixed-bottom">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-2">
-
-        </div>
-        <div class="col-sm-3"></div>
-        <div class="col-sm-2">
-            <a class="btn btn-success shadow" href="#">Eliminar Producto(s) Elegidos</a>
-        </div>
-        <div class="col-sm-2 pb-3">
-            <a class="btn btn-success shadow" href="{% url 'adminanadymod' %}">Modificar Producto(s) Elegidos</a>
-        </div>
-        <div class="col-sm-2">
-            <a class="btn btn-success shadow" href="{% url 'adminanadymod' %}">Añadir Producto</a>
         </div>
     </div>
 

@@ -2,7 +2,7 @@ from importlib.resources import path
 from unicodedata import name
 
 
-from mascota.views import administrador, agregar_producto, index, login, productogato, productoperro, sobrenosotros, carro, adminañadymod, conf_pagar
+from mascota.views import administrador, agregar_producto, eliminar_producto, index, login, modificar_producto, productogato, productoperro, sobrenosotros, carro, adminañadymod, conf_pagar
 from django.urls import path
 
 urlpatterns = [
@@ -16,4 +16,6 @@ urlpatterns = [
     path('adminanadymod',adminañadymod,name="adminanadymod"),
     path('conf_pagar',conf_pagar,name="conf_pagar"),
     path('agregar_producto',agregar_producto,name="agregar_producto"),
+    path('modificar_producto/<id>',modificar_producto,name="modificar_producto"),
+    path('eliminar_producto/<id>',eliminar_producto,name="eliminar_producto"),
 ]
