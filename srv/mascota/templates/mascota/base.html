@@ -63,20 +63,39 @@
                                 <button class="btn btn-outline-dark" type="submit">Buscar</button>
                             </li>
                         </div>
-                        <div class="col-sm-1"></div>
                         <div class="col-sm-1">
+                            {% if user.is_staff %}
+                            <li class="nav-item">
+                                <a href="{% url 'listado_usuarios' %}">Listado Usuarios</a>
+                            </li>
+                            {% else %}
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-1">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                            </li>
+                            {% else %}
                             <li class="nav-item">
                                 <a href="{% url 'login' %}">
                                     <img src="{% static 'mascota/images/icono_cuenta.jpg' %}" alt="Cuenta" style="width:40px;" class="rounded-pill">
                                 </a>
                             </li>
+                            {% endif %}
                         </div>
                         <div class="col-sm-1">
+                            {% if user.is_staff %}
+                            <li class="nav-item">
+                                <a href="{% url 'listado_productos' %}">Listado de Productos</a>
+                            </li>
+                            {% else %}
                             <li class="nav-item">
                                 <a href="{% url 'carro' %}">
                                     <img src="{% static 'mascota/images/icono_carrito.jpg' %}" alt="Carrito" style="width:40px;" class="rounded-pill">
                                 </a>
                             </li>
+                            {% endif %}
                         </div>
                     </ul>
                 </div>
