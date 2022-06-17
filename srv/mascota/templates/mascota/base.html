@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-md verde navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{% url 'index' %}">
                     <img src="{% static 'mascota/images/logo_gato.jpg' %}" alt="Logo Empresa" style="width:70px;" class="rounded">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -88,6 +88,23 @@
 
         {% endblock contenido %}
     </main>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {% if messages %}
+            {% for m in messages %}
+                <script>
+                    Swal.fire({
+                        "title":"Felicitaciones",
+                        "text":"{{m}}",
+                        "icon":"success"
+                    })
+                </script>
+            {% endfor %}
+        {% endif %}
+
+        {% block js %}
+    
+        {% endblock %}
 </body>
 
 </html>

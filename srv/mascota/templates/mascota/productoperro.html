@@ -3,40 +3,23 @@
 {% block contenido %}
 
 <main>
-
+    {% load humanize %}
     <nav class="navbar navbar-expand-sm verde navbar-light justify-content-center mt-3">
         <h1>Productos para Perro</h1>
     </nav>
-    <div class="row container-fluid mt-3 mb-5">
-        <div class="col-sm-4 text-center">
-            <a href="{% url 'perro1' %}">
-                <img src="{%static 'mascota/images/pelucheperro.jpeg'%}" alt="" width="600" class="img-fluid">
-                <h3>Peluche perro</h3>
-            </a>
-            <h2>$2500</h2>
-            <h6>Peluche para perro masticable</h6>
-            
-        </div>
-        <div class="col-sm-4 text-center">
-            <a href="{% url 'perro2' %}">
-                <img src="{%static 'mascota/images/galletaperro.jpg'%}" alt="" width="600" class="img-fluid">
-                <h3>Galletas para perro</h3>
-            </a>
-            <h2 >$3000</h2>
-            <h6>Galletas para perro Dog chow</h6>
-            
-        </div>
-        <div class="col-sm-4 text-center">
-            <a href="{% url 'perro3' %}">
-                <img src="{%static 'mascota/images/correaperro.jpg'%}" alt="" width="600" class="img-fluid">
-                <h3>Correa de perro</h3>
-            </a>
-            <h2>$2000</h2>
-            <h6>Correa de colores para perro</h6>
-            
+    <div class="container">
+        <div class="row mt-3 mb-5">
+            {% for p in productos %}
+            <div class="col-sm-4 text-center">
+                {% if p.imagen %}
+                <img src={{ p.imagen.url }} alt="" width="600" class="img-fluid">
+                {% endif %}
+                <h3>{{ p.nombre | capfirst }}</h3>
+                <h2>${{ p.precio | intcomma }}</h2>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    
 </main>
 
 {% endblock contenido %}

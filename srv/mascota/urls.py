@@ -2,7 +2,7 @@ from importlib.resources import path
 from unicodedata import name
 
 
-from mascota.views import index, login, productogato, productoperro, sobrenosotros, perro1, perro2, perro3, gato1, gato2, gato3, carro, adminañadymod, admin, conf_pagar
+from mascota.views import administrador, agregar_producto, eliminar_producto, index, login, modificar_producto, productogato, productoperro, sobrenosotros, carro, adminañadymod, conf_pagar
 from django.urls import path
 
 urlpatterns = [
@@ -11,15 +11,11 @@ urlpatterns = [
     path('productoperro',productoperro,name="productoperro"),
     path('productogato',productogato,name="productogato"),
     path('login',login,name="login"),
-    path('perro1',perro1,name="perro1"),
-    path('perro2',perro2,name="perro2"),
-    path('perro3',perro3,name="perro3"),
-    path('gato1',gato1,name="gato1"),
-    path('gato2',gato2,name="gato2"),
-    path('gato3',gato3,name="gato3"),
     path('carro',carro,name="carro"),
-    path('administrador',admin,name="administrador"),
+    path('administrador',administrador,name="administrador"),
     path('adminanadymod',adminañadymod,name="adminanadymod"),
-    path('conf_pagar',conf_pagar,name="conf_pagar")
-    
+    path('conf_pagar',conf_pagar,name="conf_pagar"),
+    path('agregar_producto',agregar_producto,name="agregar_producto"),
+    path('modificar_producto/<id>',modificar_producto,name="modificar_producto"),
+    path('eliminar_producto/<id>',eliminar_producto,name="eliminar_producto"),
 ]
