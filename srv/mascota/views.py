@@ -159,3 +159,9 @@ def detalle_producto(request,id):
         'form': ProductoForm(instance=producto)
     }
     return render(request,"mascota/detalle_producto.html",contexto)
+
+def eliminar_usuario(request,id):
+    usuario=get_object_or_404(PerfilUsuario,id=id)
+    usuario.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect(to="listado_usuarios")

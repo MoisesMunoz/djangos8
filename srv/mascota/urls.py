@@ -2,7 +2,7 @@ from importlib.resources import path
 from unicodedata import name
 
 
-from mascota.views import detalle_producto, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, sobrenosotros, carro, conf_pagar
+from mascota.views import detalle_producto, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, sobrenosotros, carro, conf_pagar
 from django.urls import path
 
 urlpatterns = [
@@ -21,4 +21,5 @@ urlpatterns = [
     path('registro',registro,name="registro"),
     path('listado_usuarios/',listado_usuarios,name="listado_usuarios"),
     path('detalle_producto/<id>',detalle_producto,name="detalle_producto"),
+    path('eliminar_usuario/<id>',eliminar_usuario,name="eliminar_usuario"),
 ]

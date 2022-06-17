@@ -1,6 +1,28 @@
 {% extends 'mascota/base.html' %}
 {% load static %}
 
+{% block js %}
+<script>
+    function eliminarUsuario(id){
+        Swal.fire({
+            "title":"¿Estas seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        })
+        .then(function(result){
+            if(result.isConfirmed) {
+                window.location.href="eliminar_usuario/"+id
+            }
+        })
+    }
+</script>
+{% endblock %}
+
 {% block contenido %}
 
 
@@ -18,6 +40,7 @@
                             <th>RUT</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
+                            <th>Acciones</th>
                         </tr>
                         {% for u in entity %}
                         <tr>
@@ -25,6 +48,9 @@
                             <td>{{ u.rut }}</td>
                             <td>{{ u.nombre | capfirst }}</td>
                             <td>{{ u.apellido | capfirst }}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </table>
