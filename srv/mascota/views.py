@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mascota.models import Producto
-from mascota.forms import ProductoForm
+from mascota.models import PerfilUsuario, Producto
+from mascota.forms import PerfilUsuarioForm, ProductoForm
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
+from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required,permission_required
 
 # Create your views here.
 def index(request):
     productos=Producto.objects.all()
+    usuarios=PerfilUsuario.objects.all()
     contexto={
-        'productos':productos
+        'productos':productos,
+        'usuarios':usuarios
     }
     return render(request,"mascota/index.html",contexto)
 
@@ -30,16 +35,11 @@ def productogato(request):
     }
     return render(request,"mascota/productogato.html",contexto)
 
-def login(request):
-    return render(request,"mascota/login.html")
-
 def carro(request):
     return render(request,"mascota/carro.html")
 
-def adminañadymod(request):
-    return render(request,"mascota/adminanadymod.html")
-
-def administrador(request):
+@login_required()
+def listado_productos(request):
     productos=Producto.objects.all()
 
     page=request.GET.get('page',1)
@@ -54,7 +54,7 @@ def administrador(request):
         'entity':productos,
         'paginator':paginator
     }
-    return render(request,"mascota/administrador.html",contexto)
+    return render(request,"mascota/listado_productos.html",contexto)
 
 def conf_pagar(request):
     return render(request,"mascota/conf_pagar.html")
@@ -86,7 +86,7 @@ def modificar_producto(request,id):
         if formulario.is_valid:
             formulario.save()
             messages.success(request, "Modificado Correctamente")
-            return redirect(to="administrador")
+            return redirect(to="listado_productos")
         contexto["form"]=formulario
 
     return render(request,"mascota/modificar_producto.html",contexto)
@@ -95,4 +95,75 @@ def eliminar_producto(request,id):
     producto=get_object_or_404(Producto,id=id)
     producto.delete()
     messages.success(request, "Eliminado Correctamente")
-    return redirect(to="administrador")
+    return redirect(to="listado_productos")
+
+@login_required()
+def cambiar_password(request):
+
+    form=PasswordChangeForm(request.POST or None)
+    contexto={
+        "form":form
+    }
+    
+    if request.method=="POST":
+        form=PasswordChangeForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to="index")
+
+    return render(request,"registration/cambiar_password.html",contexto)
+
+def perfil_usuario(request):
+    
+    form=PerfilUsuarioForm(request.POST or None)
+    
+    contexto={
+        "form":form
+    }
+    if request.method=="POST":
+        form=PerfilUsuarioForm(data=request.POST)
+        if form.is_valid():
+            datos=form.cleaned_data
+            perfil=PerfilUsuario()
+            perfil.rut=datos.get("rut")
+            perfil.nombre=datos.get("nombre")
+            perfil.apellido=datos.get("apellido")
+            perfil.nombre_usuario=request.user.username
+            perfil.save()
+            
+            return redirect(to="index")
+
+    return render(request,"registration/perfil_usuario.html",contexto)
+
+def registro(request):
+    form=UserCreationForm(request.POST or None)
+    contexto={
+        "form":form
+    }
+    
+    if request.method=="POST":
+        form=UserCreationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            credenciales=authenticate(username=form.cleaned_data["username"],password=form.cleaned_data["password1"])
+            login(request,credenciales)
+            return redirect(to="perfil_usuario")
+    
+    return render(request,"registration/registro.html",contexto)
+
+def listado_usuarios(request):
+    usuarios=PerfilUsuario.objects.all()
+
+    page=request.GET.get('page',1)
+
+    try:
+        paginator=Paginator(usuarios, 6)
+        usuarios=paginator.page(page)
+    except:
+        raise Http404
+
+    contexto={
+        'entity':usuarios,
+        'paginator':paginator
+    }
+    return render(request,"mascota/listado_usuarios",contexto)
