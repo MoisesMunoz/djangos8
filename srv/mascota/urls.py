@@ -1,9 +1,7 @@
 from importlib.resources import path
-from unicodedata import name
-
 
 from mascota.views import detalle_producto, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, sobrenosotros, carro, conf_pagar
-from django.urls import path
+from django.urls import include, path
 
 urlpatterns = [
     path('',index,name="index"),
@@ -22,4 +20,5 @@ urlpatterns = [
     path('listado_usuarios/',listado_usuarios,name="listado_usuarios"),
     path('detalle_producto/<id>',detalle_producto,name="detalle_producto"),
     path('eliminar_usuario/<id>',eliminar_usuario,name="eliminar_usuario"),
+    path('api-auth/', include('rest_framework.urls')),
 ]
