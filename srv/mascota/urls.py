@@ -1,9 +1,13 @@
 from importlib.resources import path
 from unicodedata import name
 
+from mascota.views import PerfilUsuarioViewset, agregar_producto_carro, comprar, detalle_producto, eliminar_producto_carro, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, restar_producto_carro, sobrenosotros, vaciar_carro, ver_carro, ProductoViewset
+from django.urls import path, include
+from rest_framework import routers
 
-from mascota.views import agregar_producto_carro, comprar, detalle_producto, eliminar_producto_carro, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, restar_producto_carro, sobrenosotros, vaciar_carro, ver_carro
-from django.urls import path
+router=routers.DefaultRouter()
+router.register('producto',ProductoViewset)
+router.register('perfilusuario',PerfilUsuarioViewset)
 
 urlpatterns = [
     path('',index,name="index"),
@@ -26,4 +30,5 @@ urlpatterns = [
     path('restar_producto_carro/<producto_id>',restar_producto_carro,name="restar_producto_carro"),
     path('vaciar_carro',vaciar_carro,name="vaciar_carro"),
     path('comprar',comprar,name="comprar"),
+    path('api/',include(router.urls))
 ]
