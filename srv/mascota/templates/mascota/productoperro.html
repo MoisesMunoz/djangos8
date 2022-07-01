@@ -12,12 +12,13 @@
             {% for p in productos %}
             <div class="col-sm-4 text-center">
                 {% if p.imagen %}
-                <a href="#">
+                <a href="{% url 'detalle_producto' p.id %}">
                     <img src={{ p.imagen.url }} alt="" width="600" class="img-fluid">
                 </a>
                 {% endif %}
                 <h3>{{ p.nombre | capfirst }}</h3>
                 <h2>${{ p.precio | intcomma }}</h2>
+                <a href="{% url 'agregar_producto_carro' p.id %}" class="btn btn-success btn-md">Añadir al carro</a>
             </div>
             {% endfor %}
         </div>

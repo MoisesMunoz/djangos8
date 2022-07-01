@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     "crispy_forms",
     "crispy_bootstrap5",
-    'rest_framework',
+    'django_bootstrap_icons',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mascota.context_processor.total_carro'
             ],
         },
     },
