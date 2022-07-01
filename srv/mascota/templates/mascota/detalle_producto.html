@@ -16,7 +16,7 @@
                 <h1 class="display-3 mt-5">{{producto.nombre | capfirst }}</h1>
                 <h5 class="mt-3">{{producto.descripcion}}</h5>
                 <h2>${{producto.precio | intcomma }}</h2>
-                <a href="#">
+                <a href="{% url 'agregar_producto_carro' producto.id %}">
                     <button class="btn btn-success mt-5" type="submit"><h1 class="display-6">Añadir al carro</h1></button></div>
                 </a>
         </div>

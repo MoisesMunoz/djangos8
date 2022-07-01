@@ -3,60 +3,24 @@
 {% block contenido %}
 
 <main>
-        <h1 class="text-center mb-1">Productos Nuevos</h1>
+    {% load humanize %}
+        <h1 class="text-center mb-1">Producto Nuevo</h1>
         <div class="row container-fluid">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <!-- Carousel -->
-                <div id="demo" class="carousel slide mb-3" data-bs-ride="carousel">
-
-                    <!-- Indicators/dots -->
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                {% for p in productos %}
+                {% if forloop.last %}
+                    <div class="carousel-item active mb-3">
+                        <a href="{% url 'detalle_producto' p.id %}">
+                            <img src={{ p.imagen.url }} alt="" width="600" class="img-fluid">
+                            <div class="carousel-caption bg-success rounded-pill shadow">
+                                <h3>{{p.nombre | capfirst }}</h3>
+                                <p>${{p.precio | intcomma }}</p>
+                            </div>
+                        </a>
                     </div>
-
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner img-fluid shadow">
-                        <div class="carousel-item active">
-                            <a href="#">
-                                <img src="{% static 'mascota/images/correagato.jpg' %}" alt="Producto Nuevo 1" class="d-block w-100">
-                                <div class="carousel-caption bg-success rounded-pill shadow">
-                                    <h3>Correa de arnés</h3>
-                                    <p>$3000</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#">
-                                <img src="{%static 'mascota/images/ratongato.jpg' %}" alt="Producto Nuevo 2" class="d-block w-100">
-                                <div class="carousel-caption bg-success rounded-pill shadow">
-                                    <h3>Ratón Masticable</h3>
-                                    <p>$1000</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#">
-                                <img src="{%static 'mascota/images/correaperro.jpg' %}" alt="Producto Nuevo 3" class="d-block w-100">
-                                <div class="carousel-caption bg-success rounded-pill shadow">
-                                    <h3>Correa para perro</h3>
-                                    <p>$2000</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                </div>
-            </div>
+                {% endif %}
+                {% endfor %}
             <div class="col-sm-4"></div>
         </div>
         <nav class="navbar navbar-expand-sm verde navbar-light justify-content-center">
