@@ -8,8 +8,14 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required,permission_required
+from .serializers import Productoserializer
 
 # Create your views here.
+
+class ProductoViewset(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = Productoserializer
+
 def index(request):
     productos=Producto.objects.all()
     usuarios=PerfilUsuario.objects.all()
