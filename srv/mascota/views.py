@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from mascota.carro import Carro
 from mascota.models import PerfilUsuario, Producto
 from mascota.forms import PerfilUsuarioForm, ProductoForm
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
@@ -7,8 +8,25 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required,permission_required
+from rest_framework import viewsets
+from .serializers import PerfilUsuarioSerializer, ProductoSerializer
 
 # Create your views here.
+class ProductoViewset(viewsets.ModelViewSet):
+    queryset=Producto.objects.all()
+    serializer_class=ProductoSerializer
+
+    def get_queryset(self):
+        productos=Producto.objects.all()
+        nombre=self.request.GET.get("nombre")
+        if nombre:
+            productos=productos.filter(nombre__contains=nombre)
+        return productos
+
+class PerfilUsuarioViewset(viewsets.ModelViewSet):
+    queryset=PerfilUsuario.objects.all()
+    serializer_class=PerfilUsuarioSerializer
+
 def index(request):
     productos=Producto.objects.all()
     usuarios=PerfilUsuario.objects.all()
@@ -35,9 +53,6 @@ def productogato(request):
     }
     return render(request,"mascota/productogato.html",contexto)
 
-def carro(request):
-    return render(request,"mascota/carro.html")
-
 @login_required()
 def listado_productos(request):
     productos=Producto.objects.all()
@@ -55,9 +70,6 @@ def listado_productos(request):
         'paginator':paginator
     }
     return render(request,"mascota/listado_productos.html",contexto)
-
-def conf_pagar(request):
-    return render(request,"mascota/conf_pagar.html")
 
 def agregar_producto(request):
     contexto={
@@ -153,11 +165,11 @@ def listado_usuarios(request):
     return render(request,"mascota/listado_usuarios",contexto)
 
 def detalle_producto(request,id):
-    producto=get_object_or_404(Producto, id=id)
-    
-    contexto={
-        'form': ProductoForm(instance=producto)
-    }
+    if Producto.objects.filter(id=id).exists():
+        producto=Producto.objects.get(id=id)
+        contexto={
+            "producto":producto
+        }
     return render(request,"mascota/detalle_producto.html",contexto)
 
 def eliminar_usuario(request,id):
@@ -165,3 +177,37 @@ def eliminar_usuario(request,id):
     usuario.delete()
     messages.success(request, "Eliminado Correctamente")
     return redirect(to="listado_usuarios")
+
+def ver_carro(request):
+    return render(request,'mascota/ver_carro.html',{'carro': request.session['carro']})
+
+def agregar_producto_carro(request,producto_id):
+    carro=Carro(request)
+    producto=Producto.objects.get(id=producto_id)
+    carro.agregar(producto=producto)
+    return redirect(to="/ver_carro")
+
+def eliminar_producto_carro(request,producto_id):
+    carro=Carro(request)
+    producto=Producto.objects.get(id=producto_id)
+    carro.eliminar(producto=producto)
+    return redirect(to="/ver_carro")
+
+
+def restar_producto_carro(request,producto_id):
+    carro = Carro(request)
+    producto = Producto.objects.get(id=producto_id)
+    carro.restar(producto=producto)
+    return redirect(to="/ver_carro")
+
+def vaciar_carro(request):
+    carro=Carro(request)
+    carro.limpiar_carro()
+    return redirect(to="/ver_carro")
+
+
+def comprar(request):
+    messages.success(request, 'Gracias por su Compra!!')
+    carro = Carro(request)
+    carro.limpiar_carro()
+    return redirect('/')
