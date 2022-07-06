@@ -1,7 +1,7 @@
 from importlib.resources import path
 from unicodedata import name
 
-from mascota.views import PerfilUsuarioViewset, agregar_producto_carro, comprar, detalle_producto, eliminar_producto_carro, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro, restar_producto_carro, sobrenosotros, vaciar_carro, ver_carro, ProductoViewset
+from mascota.views import PerfilUsuarioViewset, detalle_producto, eliminar_usuario, listado_productos, agregar_producto, eliminar_producto, index, listado_usuarios, login, modificar_producto, perfil_usuario, productogato, productoperro, registro,  sobrenosotros, ProductoViewset
 from django.urls import path, include
 from rest_framework import routers
 
@@ -24,11 +24,5 @@ urlpatterns = [
     path('listado_usuarios/',listado_usuarios,name="listado_usuarios"),
     path('detalle_producto/<id>',detalle_producto,name="detalle_producto"),
     path('eliminar_usuario/<id>',eliminar_usuario,name="eliminar_usuario"),
-    path('ver_carro',ver_carro,name="ver_carro"),
-    path('agregar_producto_carro/<producto_id>',agregar_producto_carro,name="agregar_producto_carro"),
-    path('eliminar_producto_carro/<producto_id>',eliminar_producto_carro,name="eliminar_producto_carro"),
-    path('restar_producto_carro/<producto_id>',restar_producto_carro,name="restar_producto_carro"),
-    path('vaciar_carro',vaciar_carro,name="vaciar_carro"),
-    path('comprar',comprar,name="comprar"),
     path('api/',include(router.urls))
 ]

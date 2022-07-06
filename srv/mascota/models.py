@@ -43,6 +43,11 @@ class PerfilUsuario(models.Model):
 class Pedido(models.Model):
     id=models.AutoField(primary_key=True)
     fecha=models.DateField()
+    #estado
 
 class Detalle(models.Model):
     id=models.AutoField(primary_key=True)
+    #pedido= id del modelo pedido
+    #detalle = id del producto
+    # cantidad
+    
