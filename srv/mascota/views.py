@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mascota.carro import Carro
 from mascota.models import PerfilUsuario, Producto
 from mascota.forms import PerfilUsuarioForm, ProductoForm
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
@@ -177,37 +176,3 @@ def eliminar_usuario(request,id):
     usuario.delete()
     messages.success(request, "Eliminado Correctamente")
     return redirect(to="listado_usuarios")
-
-def ver_carro(request):
-    return render(request,'mascota/ver_carro.html',{'carro': request.session['carro']})
-
-def agregar_producto_carro(request,producto_id):
-    carro=Carro(request)
-    producto=Producto.objects.get(id=producto_id)
-    carro.agregar(producto=producto)
-    return redirect(to="/ver_carro")
-
-def eliminar_producto_carro(request,producto_id):
-    carro=Carro(request)
-    producto=Producto.objects.get(id=producto_id)
-    carro.eliminar(producto=producto)
-    return redirect(to="/ver_carro")
-
-
-def restar_producto_carro(request,producto_id):
-    carro = Carro(request)
-    producto = Producto.objects.get(id=producto_id)
-    carro.restar(producto=producto)
-    return redirect(to="/ver_carro")
-
-def vaciar_carro(request):
-    carro=Carro(request)
-    carro.limpiar_carro()
-    return redirect(to="/ver_carro")
-
-
-def comprar(request):
-    messages.success(request, 'Gracias por su Compra!!')
-    carro = Carro(request)
-    carro.limpiar_carro()
-    return redirect('/')
