@@ -4,3 +4,5 @@ django-crispy-forms
 django-rest-framework
 crispy-bootstrap5
 django-bootstrap-icons
+mathfilters
+cx_oracle

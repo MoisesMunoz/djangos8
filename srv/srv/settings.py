@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'django_bootstrap_icons',
     'rest_framework',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -89,16 +90,16 @@ WSGI_APPLICATION = 'srv.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',}
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',}
 
-        # 'default': {
-        # 'ENGINE': 'django.db.backends.oracle',
-        # 'NAME': '127.0.0.1:1521/xe',
-        # 'USER': 'django',
-        # 'PASSWORD': 'django',
-        # },
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '127.0.0.1:1521/xe',
+        'USER': 'django',
+        'PASSWORD': 'django',
+    },
         
     
     
